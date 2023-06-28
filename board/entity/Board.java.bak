@@ -1,0 +1,52 @@
+package com.blue.bluearchive.board.entity;
+
+import com.blue.bluearchive.member.entity.Member;
+import com.blue.bluearchive.shop.entity.BaseEntity;
+import lombok.Data;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Entity
+@Data
+@Table(name = "board")
+public class Board extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "board_id")
+    private int boardId;
+
+    @Column(name = "board_content", nullable = false)
+    private String boardContent;
+
+    @Column(name = "board_count")
+    private Integer boardCount = 0;
+
+    @Column(name = "board_hate_count")
+    private Integer boardHateCount = 0;
+
+    @Column(name = "board_like_count")
+    private Integer boardLikeCount = 0;
+
+    @Column(name = "board_pre_count")
+    private Integer boardPreCount = 0;
+
+    @Column(name = "board_reports_count")
+    private Integer boardReportsCount = 0;
+
+    @Column(name = "board_title", nullable = false)
+    private String boardTitle;
+ @Column(name="board_comment_Count")
+    private Integer commentCount;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_idx")
+    private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+
+}
